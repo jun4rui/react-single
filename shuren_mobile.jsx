@@ -77,7 +77,7 @@ var InfoUnit = React.createClass({
 	getDefaultProps: function () {
 		return {
 			href:      'javascript:(void)',
-			target:    '_blank',
+			target:    '_top',
 			className: 'info-unit'
 		}
 	},

@@ -133,12 +133,12 @@ var IUList = React.createClass({
 var props = [
 	{
 		style: {
-			width:      '600px',
-			height:     'auto',
-			backgroundImage: 'url(shuren_mobile.jpg)',
-			backgroundRepeat:'no-repeat',
-			backgroundPosition:'top center',
-			paddingBottom: '20px'
+			width:              '600px',
+			height:             'auto',
+			backgroundImage:    'url(shuren_mobile.jpg)',
+			backgroundRepeat:   'no-repeat',
+			backgroundPosition: 'top center',
+			paddingBottom:      '20px'
 
 		}
 	}
@@ -149,7 +149,7 @@ $(document).ready(function () {
 		var tourList = [];
 		result.value.map(function (unit) {
 			tourList.push({
-				href:  'http://www.htyou.com/tour/tourbrowse/' + unit.lineid + '.htm',
+				href:  'http://www.htyou.com/weixin_h5/tour-detail.html?lineid=' + unit.lineid,
 				text:  unit.tourproname,
 				price: unit.leastprice,
 				src:   'http://www.htyou.com/' + unit.spotviewpic

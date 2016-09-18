@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=640, user-scalable=no">
+	<title>华天国旅:国庆游世界</title>
+	<!--<script type="text/javascript" src="cordova.js"></script>-->
+	<!--jQuery框架-->
+	<script src="http://www.htyou.com/static/jslib/jquery/jquery-1.12.3.min.js" charset="UTF-8"></script>
+	<!--avalon框架-->
+	<script src="http://www.htyou.com/static/jslib/avalon1.5/avalon.js"></script>
+	<!--js配置文件-->
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		.info-unit-section {
+			width: 100%;
+			margin: 0 auto;
+			padding: 100px 0 20px 0;
+			margin: 0 auto;
+		}
+
+		.info-unit > .image {
+			width: 148px;
+			height: 148px;
+			background-size: cover;
+			background-position: center center;
+		}
+
+		.info-unit {
+			width: 500px;
+			height: 148px;
+			overflow: hidden;
+			/* float: left; */
+			border: 2px solid #C94F10;
+			border-radius: 5px;
+			margin: 0 auto 20px auto;
+			background-color: #FFF;
+			font-family: '微软雅黑', 'Microsoft YaHei';
+			position: relative;
+		}
+
+		.info-unit > .price {
+			color: #EC5A05;
+			position: absolute;
+			left: 166px;
+			font-size: 18px;
+			bottom: 8px;
+		}
+
+		.info-unit > .price > .cprice {
+			font-size: 36px;
+		}
+
+		.info-unit > a > .buyBtn {
+			background-color: #FE7C07;
+			color: #FFF;
+			width: 110px;
+			height: 38px;
+			position: absolute;
+			left: 380px;
+			bottom: 6px;
+			border-radius: 5px;
+			text-align: center;
+			line-height: 38px;
+			font-size: 23px;
+		}
+
+		.info-unit > .text {
+			width: 310px;
+			display: block;
+			padding: 5px;
+			height: 84px;
+			color: #484848;
+			font-size: 28px;
+			line-height: 150%;
+			border-bottom: 1px solid #DDD;
+			overflow: hidden;
+			position: absolute;
+			left: 170px;
+			top: 0;
+		}
+
+		#return-to-home {
+			width: 48px;
+			height: 48px;
+			position: fixed;
+			right: 5px;
+			bottom: 5px;
+		}
+
+		.IU-List {
+			width: 640px;
+			margin:0 auto;
+			background-repeat: no-repeat;
+			background-position: top center;
+		}
+
+		.info-unit-section {
+			width: 100%;
+			margin: 0 auto;
+		}
+		.info-unit {
+			width: 500px;
+			height: 148px;
+			overflow: hidden;
+			/* float: left; */
+			border: 2px solid #C94F10;
+			border-radius: 5px;
+			margin: 0 auto 20px auto;
+			background-color: #FFF;
+			font-family: '微软雅黑', 'Microsoft YaHei';
+			position: relative;
+		}
+	</style>
+	<script>
+		avalon.ready(function () {
+			var BodyVM = avalon.define({
+				$id:   'body',
+				list1: [],	//日本
+				list2: [],	//台湾
+				list3: [],	//泰国
+				list4: [],	//澳新
+				list5: [],	//中东非
+				list6: [],	//海岛
+				list7: []	//国内
+			});
+
+			avalon.scan();
+
+			$.getJSON('http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=13379', function (result) {
+				BodyVM.list1 = result.value;
+			});
+			$.getJSON('http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=13032%2012844', function (result) {
+				BodyVM.list2 = result.value;
+			});
+			/*$.getJSON('http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=', function (result) {
+				BodyVM.list3 = result.value;
+			});*/
+			$.getJSON('http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=12978', function (result) {
+				BodyVM.list4 = result.value;
+			});
+			/*$.getJSON('http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=', function (result) {
+				BodyVM.list5 = result.value;
+			});*/
+			$.getJSON('http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=13436', function (result) {
+				BodyVM.list6 = result.value;
+			});
+			$.getJSON('http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=13248%2013282%2013523%2013526%2013516%2013528%2013525%2013527%20%E5%B1%B1%E4%B8%9C&sortCol=showgrade&sortWay=desc', function (result) {
+				BodyVM.list7 = result.value;
+			});
+
+		});
+	</script>
+</head>
+<body ms-controller="body">
+<div id="top-section">
+	<div class="IU-List" style="min-height:380px;background-image: url(bg_01.jpg);">
+
+	</div>
+	<div class="IU-List" style="min-height:100px;background-image: url(bg_02.jpg); background-color:#fca7fb;">
+		<div class="info-unit-section">
+			<div class="info-unit" ms-repeat-unit="list1">
+				<div class="image" ms-attr-style="background-image:url(http://www.htyou.com/{{unit.spotviewpic}});"></div>
+				<div class="text">{{unit.tourproname}}</div>
+				<div class="price">
+					<span>¥</span><span class="cprice">{{unit.leastprice}}</span><span>起</span>
+				</div>
+				<a ms-attr-href="http://www.htyou.com/weixin_h5/tour-detail.html?lineid={{unit.lineid}}" target="_top">
+					<div class="buyBtn">查看详情</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="IU-List" style="min-height:100px;background-image: url(bg_03.jpg); background-color:#60cefc;">
+		<div class="info-unit-section">
+			<div class="info-unit" ms-repeat-unit="list2">
+				<div class="image" ms-attr-style="background-image:url(http://www.htyou.com/{{unit.spotviewpic}});"></div>
+				<div class="text">{{unit.tourproname}}</div>
+				<div class="price">
+					<span>¥</span><span class="cprice">{{unit.leastprice}}</span><span>起</span>
+				</div>
+				<a ms-attr-href="http://www.htyou.com/weixin_h5/tour-detail.html?lineid={{unit.lineid}}" target="_top">
+					<div class="buyBtn">查看详情</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="IU-List" style="min-height:100px;background-image: url(bg_04.jpg); background-color:#9efeb0;">
+		<div class="info-unit-section">
+			<div class="info-unit" ms-repeat-unit="list3">
+				<div class="image" ms-attr-style="background-image:url(http://www.htyou.com/{{unit.spotviewpic}});"></div>
+				<div class="text">{{unit.tourproname}}</div>
+				<div class="price">
+					<span>¥</span><span class="cprice">{{unit.leastprice}}</span><span>起</span>
+				</div>
+				<a ms-attr-href="http://www.htyou.com/weixin_h5/tour-detail.html?lineid={{unit.lineid}}" target="_top">
+					<div class="buyBtn">查看详情</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="IU-List" style="min-height:100px;background-image: url(bg_05.jpg); background-color:#c5a5ff;">
+		<div class="info-unit-section">
+			<div class="info-unit" ms-repeat-unit="list4">
+				<div class="image" ms-attr-style="background-image:url(http://www.htyou.com/{{unit.spotviewpic}});"></div>
+				<div class="text">{{unit.tourproname}}</div>
+				<div class="price">
+					<span>¥</span><span class="cprice">{{unit.leastprice}}</span><span>起</span>
+				</div>
+				<a ms-attr-href="http://www.htyou.com/weixin_h5/tour-detail.html?lineid={{unit.lineid}}" target="_top">
+					<div class="buyBtn">查看详情</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="IU-List" style="min-height:100px;background-image: url(bg_06.jpg); background-color:#ffc27a;">
+		<div class="info-unit-section">
+			<div class="info-unit" ms-repeat-unit="list5">
+				<div class="image" ms-attr-style="background-image:url(http://www.htyou.com/{{unit.spotviewpic}});"></div>
+				<div class="text">{{unit.tourproname}}</div>
+				<div class="price">
+					<span>¥</span><span class="cprice">{{unit.leastprice}}</span><span>起</span>
+				</div>
+				<a ms-attr-href="http://www.htyou.com/weixin_h5/tour-detail.html?lineid={{unit.lineid}}" target="_top">
+					<div class="buyBtn">查看详情</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="IU-List" style="min-height:100px;background-image: url(bg_07.jpg); background-color:#7afffa;">
+		<div class="info-unit-section">
+			<div class="info-unit" ms-repeat-unit="list6">
+				<div class="image" ms-attr-style="background-image:url(http://www.htyou.com/{{unit.spotviewpic}});"></div>
+				<div class="text">{{unit.tourproname}}</div>
+				<div class="price">
+					<span>¥</span><span class="cprice">{{unit.leastprice}}</span><span>起</span>
+				</div>
+				<a ms-attr-href="http://www.htyou.com/weixin_h5/tour-detail.html?lineid={{unit.lineid}}" target="_top">
+					<div class="buyBtn">查看详情</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="IU-List" style="min-height:100px;background-image: url(bg_08.jpg); background-color:#ff7a8d;">
+		<div class="info-unit-section">
+			<div class="info-unit" ms-repeat-unit="list7">
+				<div class="image" ms-attr-style="background-image:url(http://www.htyou.com/{{unit.spotviewpic}});"></div>
+				<div class="text">{{unit.tourproname}}</div>
+				<div class="price">
+					<span>¥</span><span class="cprice">{{unit.leastprice}}</span><span>起</span>
+				</div>
+				<a ms-attr-href="http://www.htyou.com/weixin_h5/tour-detail.html?lineid={{unit.lineid}}" target="_top">
+					<div class="buyBtn">查看详情</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<a href="http://www.htyou.com/weixin_h5/index.html" target="_top" title="返回移动版首页">
+	<img src="return_to_home.png" alt="" id="return-to-home">
+</a>
+
+</body>
+</html>

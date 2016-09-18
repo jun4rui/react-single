@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<!--<meta name="viewport" content="width=640, user-scalable=no">-->
+	<title>华天国旅:国庆游世界</title>
+	<!--<script type="text/javascript" src="cordova.js"></script>-->
+	<!--jQuery框架-->
+	<script src="http://www.htyou.com/static/jslib/jquery/jquery-1.12.3.min.js" charset="UTF-8"></script>
+	<!--avalon框架-->
+	<script src="http://www.htyou.com/static/jslib/avalon1.5/avalon.js"></script>
+	<!--js配置文件-->
+	<script>
+		//判断客户端是否是移动设备
+		function isMobile() {
+			var sUserAgent  = navigator.userAgent.toLowerCase();
+			var bIsIpad     = sUserAgent.match(/ipad/i) == "ipad";
+			var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+			var bIsMidp     = sUserAgent.match(/midp/i) == "midp";
+			var bIsUc7      = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+			var bIsUc       = sUserAgent.match(/ucweb/i) == "ucweb";
+			var bIsAndroid  = sUserAgent.match(/android/i) == "android";
+			var bIsCE       = sUserAgent.match(/windows ce/i) == "windows ce";
+			var bIsWM       = sUserAgent.match(/windows mobile/i) == "windows mobile";
+			//console.log("您的浏览设备为：");
+			if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+				//document.writeln("phone");
+				return true;
+			} else {
+				//document.writeln("pc");
+				return false;
+			}
+		}
+		if (isMobile()) {
+			top.location.href = 'mobile.html';
+		}
+
+	</script>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+		}
+
+		a {
+			text-decoration: none;
+		}
+		.clear {
+			clear: both;
+		}
+
+		.IU-List {
+			width:100%;
+			background-position: top center;
+			background-repeat:no-repeat;
+		}
+
+		.info-unit-section {
+			width: 1392px;
+			margin: 0 auto;
+			padding-top: 150px;
+		}
+
+		.info-unit > .image {
+			width: 318px;
+			height: 242px;
+			background-size: cover;
+		}
+
+		.info-unit {
+			width: 318px;
+			height: 348px;
+			overflow: hidden;
+			float: left;
+			border: 2px solid #C94F10;
+			border-radius: 5px;
+			margin: 13px;
+			background-color: #FFF;
+
+			font-family: '微软雅黑', 'Microsoft YaHei';
+
+			position: relative;
+		}
+
+		.info-unit > .price {
+			color: #EC5A05;
+			position: absolute;
+			left: 26px;
+			font-size: 18px;
+			bottom: 5px;
+		}
+
+		.info-unit > .price > .cprice {
+			font-size: 25px;
+		}
+
+		.info-unit > a > .buyBtn {
+			background-color: #FE7C07;
+			color: #FFF;
+			width: 100px;
+			height: 30px;
+			position: absolute;
+			left: 190px;
+			bottom: 6px;
+			border-radius: 5px;
+			text-align: center;
+			line-height: 30px;
+			font-size: 18px;
+		}
+
+		.info-unit > .text {
+			display: block;
+			padding: 5px;
+			height: 54px;
+			color: #484848;
+			font-size: 18px;
+			line-height: 150%;
+			border-bottom: 1px solid #DDD;
+			overflow: hidden;
+		}
+		#return-to-home {
+			width: 48px;
+			height: 48px;
+			position: fixed;
+			right: 5px;
+			bottom: 5px;
+		}
+	</style>
+	<script>
+		avalon.ready(function () {
+			var BodyVM = avalon.define({
+				$id:   'body',
+				list1: [],	//国际
+				list2: []	//国内
+
+			});
+
+			avalon.scan();
+
+			$.getJSON('http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=13379', function (result) {
+				if (result.value!=null){
+					BodyVM.list1 = BodyVM.list1.concat(result.value);
+				}
+				console.log('list1:',BodyVM.list1);
+			});
+			$.getJSON('http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=13032%2012844', function (result) {
+				if (result.value!=null){
+					BodyVM.list1 = BodyVM.list1.concat(result.value);
+				}
+				console.log('list1:',BodyVM.list1);
+			});
+			/*$.getJSON('http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=', function (result) {
+			 BodyVM.list3 = result.value;
+			 });*/
+			$.getJSON('http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=12978', function (result) {
+				if (result.value!=null){
+					BodyVM.list1 = BodyVM.list1.concat(result.value);
+				}
+				console.log('list1:',BodyVM.list1);
+			});
+			/*$.getJSON('http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=', function (result) {
+			 BodyVM.list5 = result.value;
+			 });*/
+			$.getJSON('http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=13436', function (result) {
+				if (result.value!=null){
+					BodyVM.list1 = BodyVM.list1.concat(result.value);
+				}
+				console.log('list1:',BodyVM.list1);
+			});
+			$.getJSON('http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=13248%2013282%2013523%2013526%2013516%2013528%2013525%2013527%20%E5%B1%B1%E4%B8%9C&sortCol=showgrade&sortWay=desc', function (result) {
+				BodyVM.list2 = result.value;
+				console.log('list2:',BodyVM.list2);
+			});
+
+		});
+	</script>
+</head>
+<body ms-controller="body">
+<div id="top-section">
+	<div class="IU-List" style="min-height:690px;background-image: url(desktop_01.jpg);">
+
+	</div>
+	<div class="IU-List" style="min-height:618px;background-image: url(desktop_02.jpg); background-color:#08baf2;">
+		<div class="info-unit-section">
+			<div class="info-unit" ms-repeat-unit="list1">
+				<div class="image" ms-attr-style="background-image:url(http://www.htyou.com/{{unit.spotviewpic}});"></div>
+				<div class="text">{{unit.tourproname}}</div>
+				<div class="price">
+					<span>¥</span><span class="cprice">{{unit.leastprice}}</span><span>起</span>
+				</div>
+				<a ms-attr-href="http://www.htyou.com/tour/tourbrowse/{{unit.lineid}}.htm" target="_blank">
+					<div class="buyBtn">查看详情</div>
+				</a>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="IU-List" style="min-height:617px;background-image: url(desktop_03.jpg); background-color:#e2ee42;">
+		<div class="info-unit-section">
+			<div class="info-unit" ms-repeat-unit="list2">
+				<div class="image" ms-attr-style="background-image:url(http://www.htyou.com/{{unit.spotviewpic}});"></div>
+				<div class="text">{{unit.tourproname}}</div>
+				<div class="price">
+					<span>¥</span><span class="cprice">{{unit.leastprice}}</span><span>起</span>
+				</div>
+				<a ms-attr-href="http://www.htyou.com/tour/tourbrowse/{{unit.lineid}}.htm" target="_blank">
+					<div class="buyBtn">查看详情</div>
+				</a>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+
+
+</div>
+<a href="http://www.htyou.com/" target="_top" title="返回首页">
+	<img src="return_to_home.png" alt="" id="return-to-home">
+</a>
+
+</body>
+</html>

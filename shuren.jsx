@@ -136,26 +136,35 @@ var props = [
 			width: '100%',
 			backgroundRepeat:'no-repeat',
 			backgroundPosition:'center center',
-			height:     '707px',
+			height:     '688px',
 			backgroundImage: 'url(shuren_01.jpg)'
-
 		}
 	},
 	{
 		style: {
 			width:      '100%',
-			height:     '587px',
+			height:     '606px',
 			backgroundImage: 'url(shuren_02.jpg)',
 			backgroundRepeat:'no-repeat',
 			backgroundPosition:'center center'
-
+		}
+	},
+	{
+		style: {
+			width:      '100%',
+			height:     '601px',
+			backgroundImage: 'url(shuren_03.jpg)',
+			backgroundRepeat:'no-repeat',
+			backgroundPosition:'center center'
 		}
 	}
 ];
 
 $(document).ready(function () {
+	var tourList = [];
+	var tourList1 = [];
+
 	$.getJSON('http://www.htyou.com' + '/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=%E6%95%B0%E4%BA%BA%E5%AE%9A%E5%88%B6', function (result) {
-		var tourList = [];
 		result.value.map(function (unit) {
 			tourList.push({
 				href:  'http://www.htyou.com/tour/tourbrowse/' + unit.lineid + '.htm',
@@ -163,25 +172,38 @@ $(document).ready(function () {
 				price: unit.leastprice,
 				src:   'http://www.htyou.com/' + unit.spotviewpic
 			});
-			console.log(tourList);
 		});
-		props[1].list = tourList;//往第二个IUList中注入行程列表参数
-		var OutHTML   = React.createClass({
-			render: function () {
-				var _tempList = props.map(function (unit, index) {
-					return (
-						<IUList {...unit} key={index}/>
-					);
+		/*console.log(tourList);*/
+	}).done(function(){
+		$.getJSON('http://www.htyou.com' + '/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=13518', function (result) {
+			result.value.map(function (unit) {
+				tourList1.push({
+					href:  'http://www.htyou.com/tour/tourbrowse/' + unit.lineid + '.htm',
+					text:  unit.tourproname,
+					price: unit.leastprice,
+					src:   'http://www.htyou.com/' + unit.spotviewpic
 				});
-				return (
-					<div>
-						{_tempList}
-					</div>
-				);
-			}
+			});
+			/*console.log(tourList1);*/
+			props[1].list = tourList;//往第2个IUList中注入行程列表参数
+			props[2].list = tourList1;//往第3个IUList中注入行程列表参数
+			var OutHTML   = React.createClass({
+				render: function () {
+					console.log(props);
+					var _tempList = props.map(function (unit, index) {
+						return (
+							<IUList {...unit} key={index}/>
+						);
+					});
+					return (
+						<div>
+							{_tempList}
+						</div>
+					);
+				}
+			});
+
+			ReactDOM.render(<OutHTML/>, document.getElementById('top-section'));
 		});
-
-		ReactDOM.render(<OutHTML/>, document.getElementById('top-section'));
 	});
-
 });

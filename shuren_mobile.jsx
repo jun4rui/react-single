@@ -84,12 +84,12 @@ var InfoUnit = React.createClass({
 	render:          function () {
 		return (
 			<div className={this.props.className}>
-				<div className="image" style={{backgroundImage: 'url(' + this.props.src + ')'}}></div>
-				<div className="text">{this.props.text}</div>
+				<div className="image" style={{backgroundImage: 'url(' + 'http://www.htyou.com/' + this.props.spotviewpic + ')'}}></div>
+				<div className="text">{this.props.tourproname}</div>
 				<div className="price">
-					&yen;<span className="cprice">{this.props.price}</span>起
+					&yen;<span className="cprice">{this.props.leastprice}</span>起
 				</div>
-				<a href={this.props.href} target={this.props.target}>
+				<a href={'http://www.htyou.com/weixin_h5/tour-detail.html?lineid=' + this.props.lineid} target={this.props.target}>
 					<div className="buyBtn">查看详情</div>
 				</a>
 			</div>
@@ -99,7 +99,14 @@ var InfoUnit = React.createClass({
 
 //大图+内容单元组件
 var IUList = React.createClass({
-	getDefaultProps: function () {
+	// 初始化state
+	getInitialState:   function () {
+		return {
+			list: []
+		};
+	},
+	//初始化props
+	getDefaultProps:   function () {
 		return {
 			className: 'IU-List',
 			style:     {
@@ -110,11 +117,23 @@ var IUList = React.createClass({
 				backgroundPosition: 'top center',
 				backgroundColor:    'auto'
 			},
-			list:      []
+			url:       ''
 		};
 	},
-	render:          function () {
-		var _tempList = this.props.list.map(function (unit, index) {
+	//获取list
+	componentDidMount: function () {
+		//url赋值了才调用ajax读取
+		if (this.props.url != '') {
+			$.getJSON(this.props.url, function (result) {
+				this.setState({
+					list: result.value
+				});
+			}.bind(this));
+		}
+	},
+	//渲染组件
+	render:            function () {
+		var _tempList = this.state.list.map(function (unit, index) {
 			return (
 				<InfoUnit {...unit} key={index}/>
 			);
@@ -134,13 +153,38 @@ var props = [
 	{
 		style: {
 			width:              '600px',
-			height:             'auto',
-			backgroundImage:    'url(shuren_mobile.jpg)',
+			height:             '421px',
+			backgroundImage:    'url(shuren_mobile_1.png)',
 			backgroundRepeat:   'no-repeat',
 			backgroundPosition: 'top center',
-			paddingBottom:      '20px'
-
+			margin:             '0 auto'
 		}
+	},
+	{
+		style: {
+			width:              '600px',
+			height:             'auto',
+			backgroundImage:    'url(shuren_mobile_2.png)',
+			backgroundRepeat:   'no-repeat',
+			backgroundPosition: 'top center',
+			paddingBottom:      '20px',
+			backgroundColor:    '#a4fefe',
+			margin:             '0 auto'
+		},
+		url:   'http://www.htyou.com' + '/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=%E6%95%B0%E4%BA%BA%E5%AE%9A%E5%88%B6'
+	},
+	{
+		style: {
+			width:              '600px',
+			height:             'auto',
+			backgroundImage:    'url(shuren_mobile_3.png)',
+			backgroundRepeat:   'no-repeat',
+			backgroundPosition: 'top center',
+			paddingBottom:      '20px',
+			backgroundColor:    '#fff8ce',
+			margin:             '0 auto'
+		},
+		url:   'http://www.htyou.com' + '/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=13518'
 	}
 ];
 
@@ -156,7 +200,7 @@ $(document).ready(function () {
 			});
 			console.log(tourList);
 		});
-		props[0].list = tourList;//往第二个IUList中注入行程列表参数
+		props[1].list = tourList;//往第二个IUList中注入行程列表参数
 		var OutHTML   = React.createClass({
 			render: function () {
 				var _tempList = props.map(function (unit, index) {

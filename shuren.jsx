@@ -142,20 +142,22 @@ var props = [
 	},
 	{
 		style: {
-			width:      '100%',
-			height:     '606px',
+			width: '100%',
+			height: 'auto',
 			backgroundImage: 'url(shuren_02.jpg)',
-			backgroundRepeat:'no-repeat',
-			backgroundPosition:'center center'
+			backgroundRepeat: 'no-repeat',
+			backgroundPosition: 'top center',
+			backgroundColor: '#a4fefe'
 		}
 	},
 	{
 		style: {
 			width:      '100%',
-			height:     '601px',
+			height:     'auto',
 			backgroundImage: 'url(shuren_03.jpg)',
 			backgroundRepeat:'no-repeat',
-			backgroundPosition:'center center'
+			backgroundPosition:'top center',
+			backgroundColor: '#fff8ce'
 		}
 	}
 ];

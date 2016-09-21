@@ -189,34 +189,20 @@ var props = [
 ];
 
 $(document).ready(function () {
-	$.getJSON('http://www.htyou.com' + '/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=%E6%95%B0%E4%BA%BA%E5%AE%9A%E5%88%B6', function (result) {
-		var tourList = [];
-		result.value.map(function (unit) {
-			tourList.push({
-				href:  'http://www.htyou.com/weixin_h5/tour-detail.html?lineid=' + unit.lineid,
-				text:  unit.tourproname,
-				price: unit.leastprice,
-				src:   'http://www.htyou.com/' + unit.spotviewpic
-			});
-			console.log(tourList);
-		});
-		props[1].list = tourList;//往第二个IUList中注入行程列表参数
-		var OutHTML   = React.createClass({
-			render: function () {
-				var _tempList = props.map(function (unit, index) {
-					return (
-						<IUList {...unit} key={index}/>
-					);
-				});
+	var OutHTML   = React.createClass({
+		render: function () {
+			var _tempList = props.map(function (unit, index) {
 				return (
-					<div>
-						{_tempList}
-					</div>
+					<IUList {...unit} key={index}/>
 				);
-			}
-		});
-
-		ReactDOM.render(<OutHTML/>, document.getElementById('top-section'));
+			});
+			return (
+				<div>
+					{_tempList}
+				</div>
+			);
+		}
 	});
 
+	ReactDOM.render(<OutHTML/>, document.getElementById('top-section'));
 });

@@ -184,7 +184,7 @@ var props = [
 			backgroundColor:    '#fff8ce',
 			margin:             '0 auto'
 		},
-		url:   'http://www.htyou.com' + '/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=13518'
+		url:   'http://www.htyou.com' + '/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=%E6%85%A2%E4%BA%AB%E5%AE%9A%E5%88%B6'
 	}
 ];
 

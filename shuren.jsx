@@ -177,7 +177,7 @@ $(document).ready(function () {
 		});
 		/*console.log(tourList);*/
 	}).done(function(){
-		$.getJSON('http://www.htyou.com' + '/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=13518', function (result) {
+		$.getJSON('http://www.htyou.com' + '/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=%E6%85%A2%E4%BA%AB%E5%AE%9A%E5%88%B6', function (result) {
 			result.value.map(function (unit) {
 				tourList1.push({
 					href:  'http://www.htyou.com/tour/tourbrowse/' + unit.lineid + '.htm',

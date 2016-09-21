@@ -1,7 +1,6 @@
 module.exports = {
 	entry:  {
-		'desktop': './desktop.jsx',
-		'mobile':  './mobile.jsx'
+		'reactlib': './reactlib.jsx'
 	},
 	output: {
 		path:     './',
@@ -17,5 +16,5 @@ module.exports = {
 			}
 		}]
 	},
-	watch:  true
+	/*watch:  true*/
 }

@@ -84,12 +84,12 @@ var InfoUnit = React.createClass({
 	render:          function () {
 		return (
 			<div className={this.props.className}>
-				<div className="image" style={{backgroundImage: 'url(' + this.props.src + ')'}}></div>
-				<div className="text">{this.props.text}</div>
+				<div className="image" style={{backgroundImage: 'url(' + 'http://www.htyou.com/' + this.props.spotviewpic + ')'}}></div>
+				<div className="text">{this.props.tourproname}</div>
 				<div className="price">
-					&yen;<span className="cprice">{this.props.price}</span>起
+					&yen;<span className="cprice">{this.props.leastprice}</span>起
 				</div>
-				<a href={this.props.href} target={this.props.target}>
+				<a href={'http://www.htyou.com/weixin_h5/tour-detail.html?lineid=' + this.props.lineid} target={this.props.target}>
 					<div className="buyBtn">查看详情</div>
 				</a>
 			</div>
@@ -99,7 +99,12 @@ var InfoUnit = React.createClass({
 
 //大图+内容单元组件
 var IUList = React.createClass({
-	getDefaultProps: function () {
+	getInitialState:   function () {
+		return ({
+			list: []
+		});
+	},
+	getDefaultProps:   function () {
 		return {
 			className: 'IU-List',
 			style:     {
@@ -110,11 +115,21 @@ var IUList = React.createClass({
 				backgroundPosition: 'top center',
 				backgroundColor:    'auto'
 			},
-			list:      []
+			url:       ''
 		};
 	},
-	render:          function () {
-		var _tempList = this.props.list.map(function (unit, index) {
+	componentDidMount: function () {
+		//设定了url才用ajax载入数据
+		if (this.props.url != '') {
+			$.getJSON(this.props.url, function (result) {
+				this.setState({
+					list: result.value
+				});
+			}.bind(this));
+		}
+	},
+	render:            function () {
+		var _tempList = this.state.list.map(function (unit, index) {
 			return (
 				<InfoUnit {...unit} key={index}/>
 			);
@@ -147,121 +162,102 @@ var FloatButton = React.createClass({
 	}
 });
 
-var props = [
+var mobileProps  = [
+	{
+		style: {
+			width:              '640px',
+			backgroundRepeat:   'no-repeat',
+			backgroundPosition: 'center center',
+			height:             '380px',
+			backgroundImage:    'url(mobile_01.jpg)'
+
+		}
+	},
+	{
+		style: {
+			width:              '640px',
+			height:             'auto',
+			backgroundImage:    'url(mobile_02.jpg)',
+			backgroundRepeat:   'no-repeat',
+			backgroundPosition: 'top center',
+			backgroundColor:    '#09b9f2'
+		},
+		url:   'http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&isnative=3_4&tourstartdate=2016-10-01&tourenddate=2016-10-07'
+
+	},
+	{
+		style: {
+			width:              '640px',
+			height:             'auto',
+			backgroundImage:    'url(mobile_03.jpg)',
+			backgroundRepeat:   'no-repeat',
+			backgroundPosition: 'top center',
+			backgroundColor:    '#e2ee42'
+		},
+		url:   'http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&isnative=1_2&tourstartdate=2016-10-01&tourenddate=2016-10-07'
+	}
+];
+var desktopProps = [
 	{
 		style: {
 			width:              '100%',
 			backgroundRepeat:   'no-repeat',
 			backgroundPosition: 'center center',
-			height:             '380px',
-			backgroundImage:    'url(bg_01.jpg)'
+			height:             '690px',
+			backgroundImage:    'url(desktop_01.jpg)'
 
 		}
 	},
 	{
 		style: {
 			width:              '100%',
-			height:             '347px',
-			backgroundImage:    'url(bg_02.jpg)',
+			height:             'auto',
+			backgroundImage:    'url(desktop_02.jpg)',
 			backgroundRepeat:   'no-repeat',
-			backgroundPosition: 'center center'
+			backgroundPosition: 'top center',
+			backgroundColor:    '#09b9f2'
+		},
+		url:   'http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&isnative=3_4&tourstartdate=2016-10-01&tourenddate=2016-10-07'
 
-		}
 	},
 	{
 		style: {
 			width:              '100%',
-			height:             '348px',
-			backgroundImage:    'url(bg_03.jpg)',
+			height:             'auto',
+			backgroundImage:    'url(desktop_03.jpg)',
 			backgroundRepeat:   'no-repeat',
-			backgroundPosition: 'center center'
-
-		}
-	},
-	{
-		style: {
-			width:              '100%',
-			height:             '348px',
-			backgroundImage:    'url(bg_04.jpg)',
-			backgroundRepeat:   'no-repeat',
-			backgroundPosition: 'center center'
-
-		}
-	},
-	{
-		style: {
-			width:              '100%',
-			height:             '348px',
-			backgroundImage:    'url(bg_05.jpg)',
-			backgroundRepeat:   'no-repeat',
-			backgroundPosition: 'center center'
-
-		}
-	},
-	{
-		style: {
-			width:              '100%',
-			height:             '348px',
-			backgroundImage:    'url(bg_06.jpg)',
-			backgroundRepeat:   'no-repeat',
-			backgroundPosition: 'center center'
-
-		}
-	},
-	{
-		style: {
-			width:              '100%',
-			height:             '348px',
-			backgroundImage:    'url(bg_07.jpg)',
-			backgroundRepeat:   'no-repeat',
-			backgroundPosition: 'center center'
-
-		}
+			backgroundPosition: 'top center',
+			backgroundColor:    '#e2ee42'
+		},
+		url:   'http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&isnative=1_2&tourstartdate=2016-10-01&tourenddate=2016-10-07'
 	}
 ];
 
 
-
 $(document).ready(function () {
-	$.getJSON('http://www.htyou.com' + '/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=%E6%95%B0%E4%BA%BA%E5%AE%9A%E5%88%B6', function (result) {
-		var tourList = [];
-		result.value.map(function (unit) {
-			tourList.push({
-				href:  'http://www.htyou.com/tour/tourbrowse/' + unit.lineid + '.htm',
-				text:  unit.tourproname,
-				price: unit.leastprice,
-				src:   'http://www.htyou.com/' + unit.spotviewpic
-			});
-			console.log(tourList);
-		});
-		props[1].list = tourList;//往第二个IUList中注入行程列表参数
-		var OutHTML   = React.createClass({
-			getInitialState: function(){
-				return{
-					test: 1
-				}
-			},
-			clickHandle:     function () {
-				//console.log(this.props.test);
-				console.log('Click.');
-				this.setState({
-					test: this.state.test+1
-				});
-			},
-			render: function () {
-				var _tempList = props.map(function (unit, index) {
-					return (
-						<IUList {...unit} key={index}/>
-					);
-				});
-				return (
-					<div>
-						{_tempList}
-					</div>
-				);
+	var OutHTML = React.createClass({
+		render: function () {
+			var props = [];
+			//根据url决定采用mobile数据还是desktop数据
+			if (window.location.href.indexOf('desktop.html') > -1) {
+				props = desktopProps;
+			} else {
+				props = mobileProps;
 			}
-		});
-
-		ReactDOM.render(<OutHTML/>, document.getElementById('top-section'));
+			//渲染每个每个子节点
+			var _tempList = props.map(function (unit, index) {
+				return (
+					<IUList {...unit} key={index}/>
+				);
+			});
+			//输出
+			return (
+				<div>
+					{_tempList}
+				</div>
+			);
+		}
 	});
+	//渲染到top-section顶级元素
+	ReactDOM.render(<OutHTML/>, document.getElementById('top-section'));
 });

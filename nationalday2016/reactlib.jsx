@@ -82,6 +82,13 @@ var InfoUnit = React.createClass({
 		}
 	},
 	render:          function () {
+		//判断是移动版还是桌面版，然后根据不同的版本生成不同的跳转链接
+		var linkUrl = '';
+		if (window.location.href.indexOf('desktop.html') > -1) {
+			linkUrl = 'http://www.htyou.com/tour/tourbrowse/' + this.props.lineid + '.htm';
+		} else {
+			linkUrl = 'http://www.htyou.com/weixin_h5/tour-detail.html?lineid=' + this.props.lineid;
+		}
 		return (
 			<div className={this.props.className}>
 				<div className="image" style={{backgroundImage: 'url(' + 'http://www.htyou.com/' + this.props.spotviewpic + ')'}}></div>
@@ -89,7 +96,7 @@ var InfoUnit = React.createClass({
 				<div className="price">
 					&yen;<span className="cprice">{this.props.leastprice}</span>起
 				</div>
-				<a href={'http://www.htyou.com/weixin_h5/tour-detail.html?lineid=' + this.props.lineid} target={this.props.target}>
+				<a href={linkUrl} target={this.props.target}>
 					<div className="buyBtn">查看详情</div>
 				</a>
 			</div>
@@ -182,7 +189,7 @@ var mobileProps  = [
 			backgroundPosition: 'top center',
 			backgroundColor:    '#09b9f2'
 		},
-		url:   'http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&isnative=3_4&tourstartdate=2016-10-01&tourenddate=2016-10-07'
+		url:   'http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&isnative=3_4&tourstartdate=2016-09-25&tourenddate=2016-10-07'
 
 	},
 	{
@@ -194,7 +201,7 @@ var mobileProps  = [
 			backgroundPosition: 'top center',
 			backgroundColor:    '#e2ee42'
 		},
-		url:   'http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&isnative=1_2&tourstartdate=2016-10-01&tourenddate=2016-10-07'
+		url:   'http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&isnative=1_2&tourstartdate=2016-09-25&tourenddate=2016-10-07'
 	}
 ];
 var desktopProps = [
@@ -217,7 +224,7 @@ var desktopProps = [
 			backgroundPosition: 'top center',
 			backgroundColor:    '#09b9f2'
 		},
-		url:   'http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&isnative=3_4&tourstartdate=2016-10-01&tourenddate=2016-10-07'
+		url:   'http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&isnative=3_4&tourstartdate=2016-09-25&tourenddate=2016-10-07'
 
 	},
 	{
@@ -229,7 +236,7 @@ var desktopProps = [
 			backgroundPosition: 'top center',
 			backgroundColor:    '#e2ee42'
 		},
-		url:   'http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&isnative=1_2&tourstartdate=2016-10-01&tourenddate=2016-10-07'
+		url:   'http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&isnative=1_2&tourstartdate=2016-09-25&tourenddate=2016-10-07'
 	}
 ];
 

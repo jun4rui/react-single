@@ -243,7 +243,7 @@ var mobileProps  = [
 			backgroundColor:    '#fefcef',
 			paddingTop:         '40px'
 		},
-		url:   'http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=%E5%AE%9A%E5%88%B6&isnative=3_4'
+		url:   ''
 	},
 	{
 		style: {
@@ -255,7 +255,7 @@ var mobileProps  = [
 			backgroundColor:    '#fefcef',
 			paddingTop:         '40px'
 		},
-		url:   'http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=%E8%87%AA%E5%9C%A8&isnative=3_4'
+		url:   ''
 	}
 ];
 var desktopProps = [
@@ -313,7 +313,7 @@ var desktopProps = [
 			height:          'auto',
 			backgroundColor: '#fefcef'
 		},
-		url:        'http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=%E5%AE%9A%E5%88%B6&isnative=3_4'
+		url:        ''
 	},
 	{
 		titleImage: 'title5.png',
@@ -322,7 +322,7 @@ var desktopProps = [
 			height:          'auto',
 			backgroundColor: '#fefcef'
 		},
-		url:        'http://www.htyou.com/mobile/ipad_queryTourLine.action?jsoncallback=?&KeyWords=%E8%87%AA%E5%9C%A8&isnative=3_4'
+		url:        ''
 	}
 ];
 

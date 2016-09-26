@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>华天国旅:日本专题</title>
+	<script src="reactlib.js"></script>
+	<!--js配置文件-->
+	<script>
+		//判断客户端是否是移动设备
+		function isMobile() {
+			var sUserAgent  = navigator.userAgent.toLowerCase();
+			var bIsIpad     = sUserAgent.match(/ipad/i) == "ipad";
+			var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+			var bIsMidp     = sUserAgent.match(/midp/i) == "midp";
+			var bIsUc7      = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+			var bIsUc       = sUserAgent.match(/ucweb/i) == "ucweb";
+			var bIsAndroid  = sUserAgent.match(/android/i) == "android";
+			var bIsCE       = sUserAgent.match(/windows ce/i) == "windows ce";
+			var bIsWM       = sUserAgent.match(/windows mobile/i) == "windows mobile";
+			//console.log("您的浏览设备为：");
+			if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+				//document.writeln("phone");
+				return true;
+			} else {
+				//document.writeln("pc");
+				return false;
+			}
+		}
+		if (isMobile()) {
+			top.location.href = 'mobile.html';
+		}
+
+	</script>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+		}
+
+		a {
+			text-decoration: none;
+		}
+		.clear {
+			clear: both;
+		}
+
+		.IU-List {
+			width:100%;
+			background-position: top center;
+			background-repeat:no-repeat;
+		}
+
+		.info-unit-section {
+			width: 1336px;
+			margin: 0 auto;
+			padding-top: 20px;
+			padding-bottom: 20px;
+
+			text-align: center;
+		}
+
+		.info-unit > .image {
+			width: 311px;
+			height: 242px;
+			background-size: cover;
+		}
+
+		.info-unit {
+			width: 311px;
+			height: 348px;
+			overflow: hidden;
+			float: left;
+			border: 2px solid #C94F10;
+			border-radius: 5px;
+			margin: 9px;
+			background-color: #FFF;
+
+			font-family: '微软雅黑', 'Microsoft YaHei';
+
+			position: relative;
+		}
+
+		.info-unit > .price {
+			color: #EC5A05;
+			position: absolute;
+			left: 26px;
+			font-size: 18px;
+			bottom: 5px;
+		}
+
+		.info-unit > .price > .cprice {
+			font-size: 25px;
+		}
+
+		.info-unit > a > .buyBtn {
+			background-color: #FE7C07;
+			color: #FFF;
+			width: 100px;
+			height: 30px;
+			position: absolute;
+			left: 190px;
+			bottom: 6px;
+			border-radius: 5px;
+			text-align: center;
+			line-height: 30px;
+			font-size: 18px;
+		}
+
+		.info-unit > .text {
+			display: block;
+			padding: 5px;
+			height: 54px;
+			color: #484848;
+			font-size: 18px;
+			line-height: 150%;
+			border-bottom: 1px solid #DDD;
+			overflow: hidden;
+		}
+		#return-to-home {
+			width: 48px;
+			height: 48px;
+			position: fixed;
+			left: 5px;
+			top: 5px;
+		}
+	</style>
+
+</head>
+<body>
+<div id="top-section">
+
+</div>
+<a href="http://www.htyou.com/" target="_top" title="返回首页">
+	<img src="return_to_home.png" alt="" id="return-to-home">
+</a>
+
+</body>
+</html>

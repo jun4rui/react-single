@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="GBK">
+	<title>华天国旅</title>
+	<script src="/static/free/reactlib.js" charset="UTF-8"></script>
+	<style>
+		body {
+			font:12px/100% 'Microsoft YaHei', '微软雅黑', Verdana, Helvetica, Arial, 'WenQuanYi Micro Hei',  '新宋体', sans-serif;
+			padding:0;
+			margin:0;
+		}
+
+		img {
+			display:block;
+			border:0;
+		}
+
+		a {
+			text-decoration:none;
+		}
+
+		ul,li {
+			list-style: none;
+		}
+		.clear {
+			clear: both;
+		}
+
+		.tour-section {
+			margin-bottom:18px;
+		}
+		.tour-section li {
+			display: inline-block;
+		}
+		.tour-unit-Panel {
+			height: 245px;
+		}
+
+		#react-section {
+			width: 1176px;
+			margin: 0 auto;
+		}
+		.tour-section > .title {
+			height: 47px;
+			display: block;
+			border-bottom: 3px solid #DCDCDC;
+			position: relative;
+		}
+		.tour-section>.title>span {
+			font-size: 25px;
+			line-height: 180%;
+		}
+
+		.tab-panel {
+			width: 890px;
+			height: 50px;
+			/*margin-bottom: -3px;*/
+			margin-left: 210px;
+			overflow: hidden;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		.tab-panel > .tab-unit,
+		.tab-panel > .tab-title {
+			/* width: 76px; */
+			padding: 0 0.75em;
+			height: 38px;
+			font: 16px/30px '宋体', songti, '新宋体', simsun;
+			color: #595959;
+			text-align: center;
+			float: left;
+			cursor: pointer;
+		}
+
+		.tour-unit {
+			width: 272px;
+			height: 223px;
+			margin: 10px;
+			position: relative;
+			float: left;
+			border: 1px solid #FFF;
+		}
+
+		#chujing .tab-panel >.tab-unit.active {
+			color: #5F52A0;
+			background: url(http://www.htyou.com/static/2016/point_chujingyou.png) bottom center no-repeat;
+		}
+		#chujing.tour-section>.title>span,
+				 #chujing .tab-title {
+					 color:#5F52A0;
+				 }
+		#chujing .tour-unit:hover {
+			border: 1px solid #5F52A0;
+		}
+
+		#guonei .tab-panel >.tab-unit.active {
+			color: #FF387D;
+			background: url(http://www.htyou.com/static/2016/point_guoneiyou.png) bottom center no-repeat;
+		}
+		#guonei.tour-section>.title>span,
+		#guonei .tab-title {
+			color:#FF387D;
+		}
+		#guonei .tour-unit:hover {
+			border: 1px solid #FF387D;
+		}
+
+		.tour-unit .image {
+			width: 272px;
+			height: 169px;
+			display: block;
+			background-size: cover;
+		}
+
+		.tour-unit .text {
+			width: 160px;
+			height: 36px;
+			overflow: hidden;
+			position: absolute;
+			bottom: 9px;
+			left: 0;
+			color: #7D7D7D;
+			font: 12px/18px '宋体', simsun, '新宋体';
+			padding-left: 5px;
+		}
+
+		.tour-unit .price {
+			width: 104px;
+			height: 54px;
+			overflow: hidden;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			font-family: '微软雅黑', 'Microsoft YaHei UI';
+			font-size: 16px;
+			line-height: 54px;
+			text-align: right;
+			color: #FF7C08;
+			padding-right: 5px;
+		}
+
+		.tour-unit .price > span {
+			font-size: 25px;
+		}
+		#banner {
+			width:100%;
+			height:448px;
+			background:url(/static/free/free.jpg) center center no-repeat;
+			background-size: cover;
+			margin-bottom: 50px;
+		}
+	</style>
+</head>
+<body>
+<#include "/WEB-INF/common/common_head_a.html" />
+<div id="banner"></div>
+<div id="react-section"></div>
+</body>
+</html>

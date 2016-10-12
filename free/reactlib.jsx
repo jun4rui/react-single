@@ -55,7 +55,7 @@ var TabUnit = React.createClass({
 				//console.log('更新！');
 				//切记！一定要用setState方法设置state！！！！
 				this.setState({
-					tabList: ('精选 ' + result[0].notes).split(' ')
+					tabList: result[0].notes.split(' ')
 				});
 				//如果有的话，将tabList第一个元素发给clickUnit，传递给父组件
 				if (this.state.tabList.length > 0) {
@@ -114,8 +114,6 @@ var TourSection = React.createClass({
 	handleClick:     function (name) {
 		//先清空掉当前列表
 		this.setState({currentTourList: []});
-		//判断国内国籍
-		var addStr = 'isnative=3_4'
 		//通过接口读取数据
 		if (name == '精选') {
 			name = '';

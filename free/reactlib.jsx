@@ -52,10 +52,10 @@ var TabUnit = React.createClass({
 		//不为空才获取
 		if (this.props.jsonUrl != '') {
 			$.getJSON(SERVER_ADDR + this.props.jsonUrl, function (result) {
-				console.log('更新！');
+				//console.log('更新！');
 				//切记！一定要用setState方法设置state！！！！
 				this.setState({
-					tabList: result[0].notes.split(' ')
+					tabList: ('精选 ' + result[0].notes).split(' ')
 				});
 				//如果有的话，将tabList第一个元素发给clickUnit，传递给父组件
 				if (this.state.tabList.length > 0) {
@@ -68,14 +68,14 @@ var TabUnit = React.createClass({
 	handleClick:       function (inUnit, event) {
 		this.setState({current: inUnit});
 		this.props.clickUnit(inUnit);
-		console.log(inUnit, event.currentTarget);
+		//console.log(inUnit, event.currentTarget);
 	},
 	render:            function () {
 		return (
 			<div className="title">
 				<span>{this.props.title}</span>
 				<ul className="tab-panel">
-					<div className="tab-title">精选:</div>
+					<div className="tab-title">热门:</div>
 					{
 						this.state.tabList.map(function (unit, index) {
 							if (index >= this.props.maxTabNum) {
@@ -106,17 +106,23 @@ var TourSection = React.createClass({
 			maxTourNum: 4,	//tour-unit最大展示数
 			title:      '',	//大标题
 			tabJsonUrl: '',	//标题栏目json数据url地址
-			idName:     ''
+			idName:     '',
+			addStr:     ''	//额外的查询串
 		}
 	},
 	//处理tab-unt点击后的操作
 	handleClick:     function (name) {
 		//先清空掉当前列表
 		this.setState({currentTourList: []});
+		//判断国内国籍
+		var addStr = 'isnative=3_4'
 		//通过接口读取数据
-		$.getJSON(SERVER_ADDR + '/mobile/ipad_queryTourLine.action?KeyWords=' + encodeURI(name), function (result) {
+		if (name == '精选') {
+			name = '';
+		}
+		$.getJSON(SERVER_ADDR + '/mobile/ipad_queryTourLine.action?jsoncallback=?&tourtype=3&KeyWords=' + encodeURI(name)+'&'+this.props.addStr, function (result) {
 			//如果存在结果才赋值，结果可能有null可能导致出错要加入判断条件
-			if (result.value.length > 0) {
+			if (result.value!=null) {
 				this.setState({
 					currentTourList: result.value
 				});
@@ -156,23 +162,25 @@ var TourSection = React.createClass({
 
 var reactJson = [
 	{
-		title:'出境自由行',
-		idName:'chujing',
-		tabJsonUrl:'/common/websinfo_queryHTClass.action?jsoncallback=?&datatype=json&classId=643'
+		title:      '出境自由行',
+		idName:     'chujing',
+		tabJsonUrl: '/common/websinfo_queryHTClass.action?jsoncallback=?&datatype=json&classId=743',
+		addStr:     'isnative=3_4'
 	},
 	{
-		title:'国内自由行',
-		idName:'guonei',
-		tabJsonUrl:'/common/websinfo_queryHTClass.action?jsoncallback=?&datatype=json&classId=644'
+		title:      '国内自由行',
+		idName:     'guonei',
+		tabJsonUrl: '/common/websinfo_queryHTClass.action?jsoncallback=?&datatype=json&classId=744',
+		addStr:     'isnative=1_2'
 	}
 ];
-var OutDOM = React.createClass({
+var OutDOM    = React.createClass({
 	render: function () {
 		return (
 			<div>
 				{
-					reactJson.map(function(prop){
-						return (<TourSection {...prop}/>)
+					reactJson.map(function (prop, index) {
+						return (<TourSection {...prop} key={index}/>)
 					})
 				}
 			</div>

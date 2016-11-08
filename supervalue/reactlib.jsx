@@ -228,6 +228,9 @@ $(document).ready(function () {
 		var _startPos     = 0;
 		var _endPos       = 0;
 
+		//设定页面title
+		document.title = result[0].typename;
+
 		//设定获取的ID
 		if (result[0].gotolink.indexOf(_modeStartStr)>-1) {
 			_startPos = result[0].gotolink.indexOf(_modeStartStr) + _modeStartStr.length;
